@@ -1,36 +1,28 @@
-import matplotlib.pyplot as plt
-import matplotlib
-import matplotlib.font_manager as fm
-import seaborn as sns
 import numpy as np
 import pandas as pd
-from gensim.models import KeyedVectors
+import scipy.sparse
+import soynlp.hangle as soyh
 
-import crawler
-import nlp
 
-sns.set()
-sns.set_context('talk')
+def show_menu():
+    menu_list = [
+        '책 검색',
+        '랜덤 책 샘플',
+        '유저 검색',
+        '책 추천'
+    ]
 
-try:
-    font_location = "HANDotum.ttf"
-    font_name = fm.FontProperties(fname = font_location).get_name()
-    matplotlib.rc('font', family=font_name)
-except:
-    print("폰트 임포트 에러")
+    print("------리뷰 기반 책 추천기------")
+    for i, m in enumerate(menu_list):
+        print("{0}. {1}".format(i + 1, m))
+    print("--------------------------------------")
 
-from sklearn import neighbors
+def book_search(search_text):
 
-rv1 = pd.read_csv("Data/review1_pre.csv", index_col=[0])
-rv1 = rv1.drop_duplicates(['Author', 'BookCode'], keep='first')
-rv1 = rv1[~pd.isna(rv1["Author"])]
 
-rv_book_pivot = rv1.pivot(index='Author', columns='BookCode', values='SumRate')
-rv_book_pivot = rv_book_pivot.fillna(0)
-us_list = rv_book_pivot.index
-book_list = rv_book_pivot.columns
-book_rv_pivot = rv_book_pivot.T
+if __name__ == "__main__":
+    show_menu()
+    c = input("메뉴를 선택하세요: ")
 
-nn_model = neighbors.NearestNeighbors(metric='cosine', algorithm='brute', n_neighbors=10)
-nn_model.fit(book_rv_pivot)
-sim, idx = nn_model.kneighbors_graph(book_rv_pivot, mode='distance')
+    if c == '1':
+        search_text = input("검색어를 입력하세요: ")
