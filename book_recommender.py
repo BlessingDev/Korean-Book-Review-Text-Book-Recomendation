@@ -50,6 +50,8 @@ class BookRecommender:
             pred_book = pd.merge(pred_book, real_score, left_on="ISBN", right_on="BookCode", how="left")
             pred_book = pred_book.rename(columns={user: "RealScore"})
 
-            return pred_book[pred_book["RealScore"] == 0].iloc[:n, :]
+            rated_num = len(pred_book[pred_book["RealScore"] > 0])
+
+            return pred_book[pred_book["RealScore"] == 0].iloc[:n, :], pred_book[pred_book["RealScore"] > 0].iloc[:rated_num, :]
         else:
             print("존재하지 않는 유저입니다.")

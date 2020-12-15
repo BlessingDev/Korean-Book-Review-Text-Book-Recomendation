@@ -27,8 +27,11 @@ def sample_data(n, br):
     print(us)
 
 def book_recommend(user, n, br):
-    res = br.recommend_book(user, n)
-    print(res[["BookTitle", "BookAuthor", "ISBN", "PredScore"]])
+    pred, real = br.recommend_book(user, n)
+    print("=== 이 유저가 실제로 평점을 매긴 책 ===")
+    print(real[["BookTitle", "BookAuthor", "Category-2", "RealScore"]])
+    print("\n=== 이 유저에게 추천하는 책 ===")
+    print(pred[["BookTitle", "BookAuthor", "Category-2", "PredScore"]])
 
 if __name__ == "__main__":
     br = book_recommender.BookRecommender()
