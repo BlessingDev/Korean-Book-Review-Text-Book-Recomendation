@@ -19,7 +19,7 @@ class BookRecommender:
          self.us_list = self.rv_book_pivot.index
          self.book_list = self.rv_book_pivot.columns
 
-         self.pred_res = scipy.sparse.load_npz(DATA / "pred_tfidf_comb1.npz")
+         self.pred_res = scipy.sparse.load_npz(DATA / "pred_tfidf_comb1_k100.npz")
          self.pred_res = pd.DataFrame(self.pred_res.todense(), index=self.us_list, columns=self.book_list)
 
     def search_book(self, search_text, n=10):
@@ -52,6 +52,6 @@ class BookRecommender:
 
             rated_num = len(pred_book[pred_book["RealScore"] > 0])
 
-            return pred_book[pred_book["RealScore"] == 0].iloc[:n, :], pred_book[pred_book["RealScore"] > 0].iloc[:rated_num, :]
+            return pred_book[pred_book["RealScore"] == 0].iloc[:n, :], pred_book[pred_book["RealScore"] > 0].iloc[:min(rated_num, n), :]
         else:
             print("존재하지 않는 유저입니다.")
