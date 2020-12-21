@@ -1074,7 +1074,7 @@ Precision은 True라고 예측한 것 중, 실제로 True인 것의 비율이다
 
 ## 결과
 
-![image](https://raw.githubusercontent.com/BlessingDev/Korean-Book-Review-Text-Book-Recomendation/master/Pictures/K%EC%97%90%20%EB%94%B0%EB%A5%B8%20F-1%20%EC%A0%90%EC%88%98.png)
+![image](https://raw.githubusercontent.com/BlessingDev/Korean-Book-Review-Text-Book-Recommendation/master/Pictures/K%EC%97%90%20%EB%94%B0%EB%A5%B8%20F-1%20%EC%A0%90%EC%88%982.png)
 
 일반 평점 모델
 |K|  MAP(Mean Average Precision)  |   Recall  |  F-1 Score  |  F-0.5 Score  |
@@ -1107,5 +1107,5 @@ TF-IDF 유사도 모델
 
 * Word2Vec을 이용해 문서 간 유사도를 구하는 방법은 결과가 좋지 않았다.
 * 텍스트 유사도는 단독으로 사용하면 평점 유사도보다 점수가 떨어진다.
-* 평점 유사도와 TF-IDF 유사도를 함께 사용하면 평점 유사도만 사용했을 때보다도 더 높은 성능을 보인다. 다만, k=100일 때는 조합 모델의 유사도가 평점 유사도 모델에 못 미쳤다.
+* 평점 유사도와 TF-IDF 유사도를 함께 사용하면 평점 유사도만 사용했을 때보다도 더 높은 성능을 보인다. 다만, k=100일 때는 조합 모델의 유사도가 평점 유사도 모델에 못 미쳤다. 텍스트 데이터가 어떤 정보를 제공하기는 했지만, 그것이 정말 유용했는지는 잘 알 수 없다고 봐야할 듯 하다.
 * 책 추천이 아주 실용적인 수준은 아니었다. 콘텐츠 기반 추천 등과 조합하거나 모델 기반 추천 알고리즘을 구축한다면 더 나은 추천 결과를 보여줄 것이라고 생각한다.
